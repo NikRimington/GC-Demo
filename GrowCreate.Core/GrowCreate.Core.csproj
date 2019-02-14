@@ -237,8 +237,11 @@
       <LastGenOutput>builder.generated.cs</LastGenOutput>
     </Compile>
     <Compile Include="Models\builder.generated.cs">
-      <AutoGen>True</AutoGen>
+      <DependentUpon>builder.cs</DependentUpon>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Models\Currency.generated.cs">
       <DependentUpon>builder.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\File.generated.cs">
