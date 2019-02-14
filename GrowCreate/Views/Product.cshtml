@@ -1,0 +1,51 @@
+﻿@inherits UmbracoViewPage<Product>
+@using ClientDependency.Core.Mvc
+@using GrowCreate.Core.CurrencyConversion
+@using Slimsy
+@{
+    Layout = "Layout.cshtml";
+}
+
+<section class="product">
+
+    <div class="product__name">
+        <h1>@Model.Name</h1>
+        <a href="@Model.Parent.Url">Back to products</a>
+    </div>
+
+    @if (Model.PrimaryProductPhoto != null)
+    {
+        Html.RequiresJs("/assets/scripts/picturefill.min.js");
+        Html.RequiresJs("/assets/scripts/lazysizes.min.js");
+        <div class="product__image">
+            <img style="max-width: 500px" data-srcset="@Url.GetSrcSetUrls(Model.PrimaryProductPhoto, 270, 161)" data-src="@Url.GetCropUrl(Model.PrimaryProductPhoto, 270, 161)" sizes="auto" class="lazyload" />
+        </div>
+    }
+
+    <div class="product__summary">
+        <p>@Model.Summary</p>
+    </div>
+
+    <div class="product__pricing">
+        <h2 class="pricing__header">Price</h2>
+        <div class="price__base-currency">
+            <span>GBP</span>
+        </div>
+        <div class="price__base">
+            <span>@Model.GbpPrice.ToString("f2")</span>
+        </div>
+        @if (Model.DisplayAdditionalCurrencies != null && Model.DisplayAdditionalCurrencies.Any())
+        {
+            var requestModel = new GrowCreate.Core.CurrencyConversion.ConversionRequest
+            {
+                BasePrice = Model.GbpPrice,
+                BaseCurrencyCode = "GBP",
+                AlternativeCurrencies = Model.DisplayAdditionalCurrencies.Select(c => c.Split('(')[1].Replace(")", ""))
+            };
+
+            @Html.Action("Convert", "Conversion", new { area = "GrowCreate", req = requestModel })
+
+        }
+    </div>
+
+</section>

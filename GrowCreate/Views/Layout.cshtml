@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using ClientDependency.Core.Mvc
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        @Html.RenderCssHere()
+        @{
+            Html.RequiresCss("/assets/css/site.css");
+        }
+    </head>
+    <body>
+        <main class="container__main">
+        @RenderBody()
+        </main>
+        @Html.RenderJsHere()
+    </body>
+</html>

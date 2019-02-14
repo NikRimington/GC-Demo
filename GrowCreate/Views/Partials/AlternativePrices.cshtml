@@ -1,0 +1,19 @@
+﻿@inherits UmbracoViewPage<List<GrowCreate.Core.CurrencyConversion.PriceEntry>>
+@using ClientDependency.Core.Mvc
+@{ 
+    Html.RequiresJs("https://code.jquery.com/jquery-3.3.1.min.js",1, new { integrity = "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=", crossorigin = "anonymous" });
+    Html.RequiresJs("/assets/scripts/alternative-currency-view.js");
+}
+<div class="price__alternative-currencies">
+    <h3 class="alternative-currencies__heading">View price in</h3>
+    <select class="alternative-currencies__list">
+        <option selected value="-">-</option>
+        @foreach (var alternativeCurrency in Model)
+        {
+            <option class="price__alternative-currency" value="@alternativeCurrency.Price.ToString("f2")">
+                @alternativeCurrency.Currency
+            </option>
+        }
+    </select>
+    <span class="currency__value"></span>
+</div>

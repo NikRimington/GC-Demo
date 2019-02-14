@@ -1,0 +1,95 @@
+﻿.container__main{
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+
+.product {
+    .product__pricing {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 6fr 2fr 1fr;
+        grid-template-areas: 'heading baseCurrency currentPrice' 'alt alt alt';
+
+        @media(min-width: $screen-md-min) {
+            max-width: 500px;
+        }
+
+        .pricing__header {
+            grid-area: heading;
+            -ms-grid-row: 1;
+            -ms-grid-column: 1;
+            -ms-grid-column-span: 1;
+        }
+
+        .price__base-currency {
+            grid-area: baseCurrency;
+        }
+
+        .price__base {
+            grid-area: currentPrice;
+            -ms-grid-row: 1;
+            -ms-grid-column: 3;
+            -ms-grid-column-span: 1;
+            text-align: right;
+        }
+
+        .price__alternative-currencies {
+            grid-area: alt;
+            -ms-grid-row: 2;
+            -ms-grid-column: 1;
+            -ms-grid-column-span: 3;
+
+            @media(min-width: $screen-md-min) {
+                display: grid;
+                align-items: center;
+                grid-template-areas: "altHead altCurrency altValue";
+                grid-template-columns: 6fr 2fr 1fr;
+
+                .alternative-currencies__heading {
+                    grid-area: altHead;
+                }
+
+                .alternative-currencies__list {
+                    grid-area: altCurrency;
+                }
+
+                .currency__value {
+                    text-align: right;
+                    grid-area: altValue;
+                }
+            }
+        }
+    }
+
+    @media(min-width: $screen-md-min) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        grid-template-areas: "header image" "description image" "pricing image";
+        grid-column-gap: 20px;
+
+        .product__name {
+            grid-area: header;
+        }
+
+        .product__image {
+            grid-area: image;
+
+            .lazyloaded {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        .product__summary {
+            grid-area: description;
+        }
+
+        .product__pricing {
+            grid-area: pricing;
+        }
+    }
+}

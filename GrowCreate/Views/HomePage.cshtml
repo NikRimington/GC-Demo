@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<HomePage>
+@{
+	Layout = "Layout.cshtml";
+}
+
+<section class="home">
+    <h1>Demo site for GrowCreate</h1>
+
+    @foreach (var sibling in Model.Siblings())
+    {
+        <div>
+            <a href="@sibling.Url">@sibling.Name</a>
+        </div>
+    }
+
+</section>

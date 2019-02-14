@@ -1,0 +1,18 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Products>
+@{
+	Layout = "Layout.cshtml"; 
+    
+}
+
+<section class="products">
+
+    <h1 class="products__heading">Products</h1>
+    <a href="@Model.Parent.Url">Back to home</a>
+    @foreach(var child in Model.Children)
+    {
+        <div class="product">
+        <a href="@child.Url">@child.Name</a>
+        </div>
+    }
+
+</section>
